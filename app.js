@@ -19,14 +19,24 @@ const newGrid = gameBoard('container', [])
 
 const Gameflow = (boardObject) => {
     const targetArray = () => boardObject.makeGrid().board
+    const toggleChoice = (choice) => !choice 
     const gameText = () => {
         hold=targetArray()
         let divs = document.querySelectorAll('.gamebox')
+        let placeHolder = toggleChoice()
         divs.forEach((div) => {
             div.addEventListener('click', e => {
               element = document.getElementById(e.target.id)
-              element.textContent = "X"
-              
+                if(placeHolder==true){
+                    element.textContent = "X"
+                    console.log(placeHolder)
+                } else if(placeHolder==false){
+                    element.textContent = "O"
+                    console.log(placeHolder)
+                }
+                
+                placeHolder=!placeHolder
+            
             })
         })
         return{divs}
@@ -36,4 +46,16 @@ const Gameflow = (boardObject) => {
 
 const targetObject = Gameflow(newGrid)
 console.log(targetObject.gameText())
+
+
 // console.log(targetObject.targetArray())
+
+// if(element.className=="gamebox"){
+            //     // element.className=="X"}
+            //     // else{
+            //     //     element.className=="O"
+
+            //     if(element.classList.includes('X')){
+            //         element.classList.remove('')
+            //     }
+            //     }
